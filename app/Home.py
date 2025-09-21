@@ -8,6 +8,14 @@ import pydeck as pdk
 import plotly.express as px
 from PIL import Image
 from config import get_api  # precisa existir na raiz do projeto
+import sys
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+# ---------------------------------------------------------------------------
+
+from config import get_api
 
 # ====== Config & helpers ======
 st.set_page_config(page_title="Forttis • Geotab MVP", layout="wide")
