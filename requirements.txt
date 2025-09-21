@@ -1,0 +1,10 @@
+streamlit>=1.37
+pandas>=2.2
+sqlalchemy>=2.0
+mygeotab
+plotly>=5.22
+pydeck>=0.9
+pytz
+python-dotenv>=1.0
+Pillow
+requests
