@@ -7,14 +7,29 @@ from datetime import datetime, timedelta, timezone
 import pydeck as pdk
 import plotly.express as px
 from PIL import Image
-from config import get_api  # precisa existir na raiz do projeto
 import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 # ---------------------------------------------------------------------------
+# ---- HOTFIX: get_api direto aqui para o Streamlit Cloud ----
+import os
+import mygeotab
 
+def get_api():
+    user   = os.environ.get("MYGEOTAB_USERNAME")
+    pwd    = os.environ.get("MYGEOTAB_PASSWORD")
+    db     = os.environ.get("MYGEOTAB_DB")
+    server = os.environ.get("MYGEOTAB_SERVER")  # opcional
+
+    if not user or not pwd or not db:
+        raise ValueError("Defina MYGEOTAB_USERNAME, MYGEOTAB_PASSWORD e MYGEOTAB_DB em Secrets.")
+
+    api = mygeotab.API(username=user, password=pwd, database=db, server=server)
+    api.authenticate()
+    return api
+# ------------------------------------------------------------
 from config import get_api
 
 # ====== Config & helpers ======
